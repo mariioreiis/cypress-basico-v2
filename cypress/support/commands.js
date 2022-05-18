@@ -1,9 +1,8 @@
-Cypress.Commands.add('fillMandatoryFieldsAndSubmit', () => {
-    cy.get('#firstName').type('Mario')
-    cy.get('#lastName').type('Reis')
-    cy.get('#email').type('mario@gmail.com')
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', function() {
+    cy.get('#firstName').type(Cypress.env('name'))
+    cy.get('#lastName').type(Cypress.env('lastName'))
+    cy.get('#email').type(Cypress.env('email'))
     cy.get('#open-text-area').type('Aqui está sendo testado um input no campo de texto')
-    cy.get('.button').click()
-    cy.get('.success').should('be.visible')
+    cy.contains('button','Enviar').click()
   })
 
