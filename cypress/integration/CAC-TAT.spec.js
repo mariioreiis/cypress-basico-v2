@@ -10,9 +10,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('preenche os campos obrigatórios e envia o formulário', function(){
-        cy.get('#firstName').type(Cypress.env('name'))
-        cy.get('#lastName').type(Cypress.env('lastName'))
-        cy.get('#email').type(Cypress.env('email'))
+        cy.get('#firstName').type('Mario')
+        cy.get('#lastName').type('Reis')
+        cy.get('#email').type('mario@gmail.com')
         cy.get('#open-text-area').type('Estou realizando um teste, preciso digitar algo longo para testar o delay do cypress Mussum Ipsum cacilds vidis litro abertis Mé faiz elementum girarzis  nisi eros vermeio Nullam volutpat risus nec leo commodo  ut interdum diam laoreet Sed non consequat odio Atirei o pau no gatis, per gatis num morreusA ordem dos tratores não altera o pão duris', { delay: 0 })
         cy.contains('button','Enviar').click()
         cy.get('.success').should('be.visible')
@@ -20,8 +20,8 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     )
 
     it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function(){
-        cy.get('#firstName').type(Cypress.env('name'))
-        cy.get('#lastName').type(Cypress.env('lastName'))
+        cy.get('#firstName').type('Mario')
+        cy.get('#lastName').type('Reis')
         cy.get('#email').type('mariotesteemailerrado')
         cy.get('#open-text-area').type('Estou realizando um teste')
         cy.contains('button','Enviar').click()
@@ -34,9 +34,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function(){
-        cy.get('#firstName').type(Cypress.env('name'))
-        cy.get('#lastName').type(Cypress.env('lastName'))
-        cy.get('#email').type(Cypress.env('email'))
+        cy.get('#firstName').type('Mario')
+        cy.get('#lastName').type('Reis')
+        cy.get('#email').type('mario@gmail.com')
         cy.get('#phone-checkbox').check()
         cy.get('#open-text-area').type('Estou realizando um teste')
         cy.contains('button','Enviar').click()
@@ -44,11 +44,11 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('preenche e limpa os campos nome, sobrenome, email e telefone', function(){
-        cy.get('#firstName').type(Cypress.env('name')).should('have.value', Cypress.env('name'))
+        cy.get('#firstName').type('Mario').should('have.value', 'Mario')
         .clear().should('have.value', '')
-        cy.get('#lastName').type(Cypress.env('lastName')).should('have.value', Cypress.env('lastName'))
+        cy.get('#lastName').type('Reis').should('have.value', 'Reis')
         .clear().should('have.value', '')
-        cy.get('#email').type(Cypress.env('email')).should('have.value', Cypress.env('email'))
+        cy.get('#email').type('mario@gmail.com').should('have.value', 'mario@gmail.com')
         .clear().should('have.value', '')
         cy.get('#phone').type('1234567').should('have.value', '1234567')
         .clear().should('have.value', '')
